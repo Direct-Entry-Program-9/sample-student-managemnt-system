@@ -7,6 +7,7 @@ const txtName = document.getElementById('txt-name');
 const txtContact = document.getElementById('txt-contact');
 const txtAddress = document.getElementById('txt-address');
 const frmStudent = document.getElementById('frm-student');
+const wrapper = document.getElementById('wrapper');
 
 const regExp4Name = /^[A-Za-z ]+$/;
 const regExp4Address = /^[A-Za-z0-9,:./\- ]+$/;
