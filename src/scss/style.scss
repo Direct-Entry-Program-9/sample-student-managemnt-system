@@ -1,4 +1,16 @@
 table {
+    &.empty tfoot{
+        display: table-footer-group;
+    }
+
+    tfoot{
+        display: none;
+    }
+
+    tbody tr.selected{
+        background-color: lightskyblue;
+    }
+
     td:first-child, 
     th:first-child,
     td:last-child {
