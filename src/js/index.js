@@ -49,14 +49,14 @@ class Student {
         this.#nameCell = this.rowElm.insertCell();
         this.#contactCell = this.rowElm.insertCell();
         const removeCell = this.rowElm.insertCell();
-        removeCell.innerHTML = `<i class="bi bi-trash"></i>`;
-        
+
         this.id = id;
         idCell.innerText = this.id;
         this.name = name;
         this.address = address;
         this.contact = contact;
-
+        removeCell.innerHTML = `<i class="bi bi-trash"></i>`;
+        
         tblStudents.classList.remove('empty');
 
         this.rowElm.addEventListener('click', ()=>{
@@ -80,6 +80,7 @@ tblStudents.tBodies[0].addEventListener('click', ({target:elm})=> {
         const index = students.findIndex(student => student.rowElm === elmRow);
         students.splice(index, 1);
         elmRow.remove();
+        btnNew.click();
 
         if(!tblStudents.tBodies[0].rows.length){
             tblStudents.classList.add("empty");
@@ -134,6 +135,7 @@ btnSave.addEventListener('click', ()=>{
 
     if (btnSave.innerText === 'Save Student'){
         students.push(new Student(txtId.value, txtName.value, txtAddress.value, txtContact.value));
+        btnNew.click();
     }else{
         selectedStudent.name = txtName.value;
         selectedStudent.address = txtAddress.value;
@@ -142,6 +144,16 @@ btnSave.addEventListener('click', ()=>{
 });
 
 function generateNewStudentId(){
-    /* Todo: implement the logic */
-    return "S001";
+    if (!students.length){
+        return "S001";
+    }else{
+        const newId = +students[students.length - 1].id.replace("S", "") + 1;
+        if (newId < 10){
+            return `S00${newId}`;
+        }else if(newId < 100){
+            return `S0${newId}`;
+        }else{
+            return `S${newId}`;
+        }
+    }
 }
